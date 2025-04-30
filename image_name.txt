@@ -1,1 +1,1 @@
-mehararothila/data-crunch-predictor:latest
+mehararothila/data-crunch-predictor:v1.1
