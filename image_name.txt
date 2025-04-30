@@ -1,0 +1,1 @@
+mehararothila/data-crunch-predictor:latest
