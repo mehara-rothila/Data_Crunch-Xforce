@@ -83,12 +83,12 @@ The Dockerfile in the project contains the recipe for creating the application i
 
 **Command:** Open your terminal in the project root directory and run:
 ```bash
-docker build -t data-crunch-predictor .
+docker build -t mehararothila/data-crunch-predictor:v1.1 .
 ```
 
 **Explanation:**
 - `docker build`: The command to start the image build process.
-- `-t data-crunch-predictor`: This assigns a memorable name (a "tag") data-crunch-predictor to the image you are building. This makes it easier to refer to later.
+- `-t mehararothila/data-crunch-predictor:v1.1`: This assigns a memorable name (a "tag") mehararothila/data-crunch-predictor:v1.1 to the image you are building. This makes it easier to refer to later.
 - `.`: This crucial dot tells Docker to look for the Dockerfile in the current directory and use the contents of this directory as the "build context" (files to be potentially copied into the image).
 
 **Process:** Docker will execute the steps in the Dockerfile sequentially. This involves downloading the base Python image, installing system dependencies (like libgomp1), installing all Python packages listed in requirements.txt, and copying your application code and data files into the image. This may take several minutes, especially the first time. Watch for any error messages. A successful build ends with messages like => exporting to image and => naming to ....
@@ -99,7 +99,7 @@ Once the image is built successfully, you can run a container based on that imag
 
 **Command:** In your terminal, run:
 ```bash
-docker run -p 8000:8000 --rm --name predictor-app data-crunch-predictor
+docker run -p 8000:8000 --rm --name predictor-app mehararothila/data-crunch-predictor:v1.1
 ```
 
 **Explanation:**
@@ -107,7 +107,7 @@ docker run -p 8000:8000 --rm --name predictor-app data-crunch-predictor
 - `-p 8000:8000`: This is the port mapping. It connects port 8000 on your host machine (your computer, the first 8000) to port 8000 inside the container (the second 8000, where the Uvicorn server is listening). This allows you to access the API from your browser using localhost:8000. Make sure port 8000 is not already used by another application on your host.
 - `--rm`: This is a cleanup flag. It tells Docker to automatically remove the container (but not the image) when it stops (e.g., when you press CTRL+C in the terminal).
 - `--name predictor-app`: Assigns a convenient name predictor-app to the running container instance, making it easier to manage if needed.
-- `data-crunch-predictor`: Specifies the name of the image you want to run the container from (the one you built in the previous step).
+- `mehararothila/data-crunch-predictor:v1.1`: Specifies the name of the image you want to run the container from (the one you built in the previous step).
 
 **Output:** After running the command, you should see log output in your terminal, including lines from Uvicorn like:
 ```
@@ -124,8 +124,25 @@ This indicates the API server is running successfully inside the container and i
 If you didn't build the image locally but want to run the one pushed to Docker Hub, use:
 
 ```bash
-docker run -p 8000:8000 --rm --name predictor-app mehararothila/data-crunch-predictor:latest
+docker run -p 8000:8000 --rm --name predictor-app mehararothila/data-crunch-predictor:v1.1
 ```
+
+## 🌟 Deployed Application Access
+
+> **IMPORTANT DEPLOYMENT INFORMATION** 
+> 
+> The deployed API documentation (Swagger UI) can be accessed at the following URL:
+> 
+> http://api.mehara.io:8000/docs
+> 
+> Alternatively, you can use the direct IP address:
+> 
+> http://64.227.137.70:8000/docs
+> 
+> **Note on Browser Warnings:**
+> Since the deployment uses standard HTTP on port 8000 (and not HTTPS with an SSL certificate), your browser will likely display a "Not Secure" warning page when you first access the link.
+> 
+> This is expected behavior. Please click the button or link labeled "Continue to site", "Advanced" -> "Proceed", or similar wording to access the API documentation page.
 
 ## 🔌 API Usage
 
