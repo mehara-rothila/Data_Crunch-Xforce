@@ -1,0 +1,18 @@
+Deployed Application Access Information
+=======================================
+
+The deployed API documentation (Swagger UI) can be accessed at the following URL:
+
+http://api.mehara.io:8000/docs
+
+Alternatively, you can use the direct IP address:
+
+http://64.227.137.70:8000/docs
+
+Important Note on Browser Warnings:
+-----------------------------------
+Since the deployment uses standard HTTP on port 8000 (and not HTTPS with an SSL certificate), your browser will likely display a "Not Secure" warning page when you first access the link.
+
+This is expected behavior. Please click the button or link labeled "Continue to site", "Advanced" -> "Proceed", or similar wording to access the API documentation page.
+
+Thank you!
